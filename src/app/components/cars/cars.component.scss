@@ -1,0 +1,51 @@
+.marques img{
+    cursor: pointer;
+    border: 1px solid #dee2e6!important;
+}
+.all:hover,
+.marques img:hover{
+    box-shadow: 0 0 10px 1px #dddd;
+}
+.img-thumbnail{
+    border: none!important;
+    width: 7rem!important;
+    height: 7rem;
+    padding: .5rem!important;
+}
+.all{
+    display: flex;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    padding: 1rem;
+    font-weight: 600;
+    border-radius: .3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 1px solid #dee2e6;
+    justify-content: center;
+}
+.marques{
+    padding: .5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.card{
+    height: 25rem!important;
+}
+.card-img-top{  
+    height: 15rem!important;
+}   
+
+@media screen and (max-width : 600px) {
+    .img-thumbnail{
+        border: none!important;
+        width: 5rem!important;
+        height:5rem;
+        padding: .5rem!important;
+    }
+    .all{
+        width: 5rem;
+        height:5rem;
+    }
+}

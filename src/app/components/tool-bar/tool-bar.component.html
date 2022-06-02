@@ -1,0 +1,86 @@
+<div class="row toolbar">
+    <div class="add-car col-md-3 col-sm-5 mb-2">
+        <button class="btn btn-outline-success btn-lg btn-block" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Car</button>
+    </div>
+    <div class="col-md-4 col-4"></div>
+    <div class="search-car col-md-5">
+        <input type="search" class="form-control" [(ngModel)]="searchTerm" (keyup)="changing($event)" placeholder="Search Car">
+    </div>
+</div>
+
+<div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Insert Car Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="p-3" [formGroup]="infoForm">
+                    <div class="row mt-3">
+                        <div class="col input-group">
+                            <input required value="{{Name}}" [ngClass]="{'is-invalid':Name?.invalid && Name?.touched}" formControlName="name" type="text" class="form-control input" >
+                            <label class="user-label">Name</label>
+                        </div>
+                        <div class="col input-group">
+                            <input required type="number" value="{{PlaceNumber}}" [ngClass]="{'is-invalid':PlaceNumber?.invalid && PlaceNumber?.touched}" formControlName="placeNum" class="form-control input" >
+                            <label class="user-label">Places Number</label>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col input-group">
+                            <input required type="color" value="{{Color}}" formControlName="color" class="form-control input" >
+                            <label class="user-label">Color</label>
+                        </div>
+                        <div class="col input-group">
+                            <input required type="number" value="{{DoorNumber}}" [ngClass]="{'is-invalid':DoorNumber?.invalid && DoorNumber?.touched}" formControlName="doorNum" class="form-control input" >
+                            <label class="user-label">Doors Number</label>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col input-group">
+                            <input required type="file" accept="image/*" (change)="UploadImg($event)" [ngClass]="{'is-invalid':Photo?.invalid && Photo?.touched}" formControlName="photo" class="form-control input">
+                            <label class="user-label1">Photo</label>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <img style="height:15rem;" [src]="imgPath" class="form-control img-fluid img preview">
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col input-group">
+                            <input required type="text" value="{{Price}}" [ngClass]="{'is-invalid':Price?.invalid && Price?.touched}" formControlName="price" class="form-control input" >
+                            <label class="user-label">Price Per Day</label>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col input-group">
+                            <select formControlName="marque" value="{{Marque}}" [class.err]="Marque?.invalid && Marque?.touched" required class="form-select input">
+                                <option></option>
+                                <option>dd</option>
+                            </select>
+                            <label class="user-label" [class.top]="Marque?.valid">Marque</label>
+                        </div>
+                        <div class="col input-group">
+                            <select formControlName="category" value="{{Category}}" [class.err]="Category?.invalid && Category?.touched" required class="form-select input">
+                                <option></option>
+                                <option>ff</option>
+                            </select>
+                            <label [class.top]="Category?.valid" class="user-label">Category</label>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col input-group">
+                            <textarea rows="5" value="{{Description}}" [ngClass]="{'is-invalid':Description?.invalid && Description?.touched}" formControlName="description" class="form-control input" required ></textarea>
+                            <label [class.top]="Description?.valid" class="user-label">Description</label>
+                        </div>
+                    </div>
+                </form>
+                <!-- {{infoForm.value | json}} -->
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" routerLink="/home/cars">Insert Car</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+input:focus,select:focus,textarea:focus{
+    box-shadow: none!important;
+}
+.owl-carousel.owl-drag .owl-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.err{
+    border: 1px solid red!important;
+}
