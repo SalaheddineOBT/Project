@@ -16,6 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { ApiService } from './services/api.service';
 import { FilterPipe } from './shared/filter.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FilterPipe } from './shared/filter.pipe';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [
       ApiService

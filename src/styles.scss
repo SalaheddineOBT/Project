@@ -9,3 +9,5 @@ input:focus,select:focus,textarea:focus{
 .err{
     border: 1px solid red!important;
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

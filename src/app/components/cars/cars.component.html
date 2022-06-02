@@ -11,6 +11,26 @@
     </div>
 </section>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are You Sure You Want To Delete This Car ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >No</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
 <ng-container *ngIf="cars.length == 0">
     <div class="cars">
         <div class="row mt-g">
@@ -26,29 +46,29 @@
 <ng-container *ngIf="cars.length > 0">
     <div class="album py-5 bg-light">
         <div class="container">
-    
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    
-            <div class="col cards"  *ngFor="let item of filterMarques | filter:searchKey:'Name'">
-                <div class="card shadow-sm">
-                    <img src="https://rumbustious-hilltop.000webhostapp.com/API/Photos/cars/{{item.Photo}}"  class="bd-placeholder-img card-img-top">
-    
-                    <div class="card-body">
-                        <h4 style="white-space: nowrap;padding-bottom:5px;overflow:hidden;text-overflow: ellipsis;max-width: 70vw;">{{item.Name}}</h4>
-                        <p class="card-text" style="padding-bottom:5px;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;max-width: 70vw;">{{item.Description}}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group text-center">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="navigateToDerail(item.ID)">Show Details</button>
-                            <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
-                            <button type="button" class="btn btn-sm btn-outline-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Update</button>
-                        </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col cards"  *ngFor="let item of filterMarques | filter:searchKey:'Name' | slice: (page-1) * pageSize : page * pageSize">
+                    <div class="card shadow-sm">
+                        <img src="https://rumbustious-hilltop.000webhostapp.com/API/Photos/cars/{{item.Photo}}"  class="bd-placeholder-img card-img-top">
+                        <div class="card-body">
+                            <h4 style="white-space: nowrap;padding-bottom:5px;overflow:hidden;text-overflow: ellipsis;max-width: 70vw;">{{item.Name}}</h4>
+                            <p class="card-text" style="padding-bottom:5px;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;max-width: 70vw;">{{item.Description}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group text-center">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="navigateToDerail(item.ID)">Show Details</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                                <button type="button" class="btn btn-sm btn-outline-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Update</button>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container d-flex pt-2 mt-3">
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="cars.length"></ngb-pagination>
         </div>
-    </div>
+    </div>  
 </ng-container>
 
 <!-- {{data | json}} -->

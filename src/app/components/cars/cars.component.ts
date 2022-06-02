@@ -11,12 +11,15 @@ import { Router } from '@angular/router';
 
 export class CarsComponent implements OnInit {
 
-    cars:any=[];
-    marques:any=[];
+    cars:any = [];
+    marques:any = [];
+    page = 1;
 
     public filterMarques:any;
 
-    searchKey:string="";
+    searchKey:string = "";
+
+    pageSize =6;
 
     constructor(private apiService:ApiService,private router:Router) { }
 

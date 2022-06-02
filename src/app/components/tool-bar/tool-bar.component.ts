@@ -64,7 +64,4 @@ export class ToolBarComponent implements OnInit {
         // this.setState({img:this.inputfile.current.currentSrc});
     }
 
-
-    
-
 }
