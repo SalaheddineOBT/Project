@@ -13,11 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountComponent } from './components/account/account.component';
 import { FirstpgComponent } from './components/firstpg/firstpg.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { ApiService } from './services/api.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarsModule } from './components/cars/cars.module';
 import { FilterPipeModule } from './pipes/filter/filter.module';
+import { ToolBarModule } from './components/tool-bar/tool-bar.module';
 
 @NgModule({
   declarations: [
@@ -25,8 +25,7 @@ import { FilterPipeModule } from './pipes/filter/filter.module';
     routingComponents,
     AccountComponent,
     FirstpgComponent,
-    HeaderComponent,
-    ToolBarComponent
+    HeaderComponent
   ],
   imports: [
     CarouselModule ,

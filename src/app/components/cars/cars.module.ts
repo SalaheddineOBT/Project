@@ -6,6 +6,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FilterPipeModule } from 'src/app/pipes/filter/filter.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarAlertModule } from '../car-alert/car-alert.module';
+import { ToolBarModule } from '../tool-bar/tool-bar.module';
 
 
 
@@ -18,7 +19,8 @@ import { CarAlertModule } from '../car-alert/car-alert.module';
         NgbModule,
         CarouselModule,
         CarAlertModule,
-        FilterPipeModule
+        FilterPipeModule,
+        ToolBarModule
     ],
     providers: [ApiService],
     exports: [CarsComponent]

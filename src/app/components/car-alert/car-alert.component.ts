@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/services/api.service';
+import { TestService } from 'src/app/services/test.service';
 import { TCar } from 'src/app/utils/types/car.type';
 
 @Component({
@@ -14,29 +16,63 @@ export class CarAlertComponent implements OnInit {
 
     car!: TCar | null;
 
+    methodeForm!:string
+    
+    marques: any = [];
+    categories: any = [];
+
+    public imgPath ='';
+
     constructor(
         private fb: FormBuilder,
-        private modal: NgbActiveModal
+        public modal: NgbActiveModal,
+        private apiService: ApiService,
+        public test:TestService
     ) {
         this.car = null;
     }
 
     ngOnInit(): void {
+        var i = JSON.stringify({ selectedBy: 'All' });
         this.initForm();
-        console.log(this.car);
+        //console.log(this.car);
+        this.apiService.getCategories(i).subscribe((res:any) => {
+            res.success ? this.categories = res.Categories : console.log(res.message);
+        });
+
+        this.apiService.getMarques(i).subscribe((res:any) => {
+            res.success ? this.marques = res.Marques : console.log(res.message);
+        });
+
+        this.methodeForm = this.test.methode;
+
+        let img='https://rumbustious-hilltop.000webhostapp.com/API/Photos/cars/'+this.Photo;
+        this.Photo ? this.imgPath = img : this.imgPath = '../../../assets/images/imageImport.jpg';
+
     }
+
+    get Photo(){return this.infoForm.get('photo')?.value;}
 
     private initForm(): void {
         this.infoForm = this.fb.group({
             name: [this.car?.Name, [Validators.required, Validators.minLength(3)]],
-            placeNum: [this.car?.PlaceNumber],
-            doorNum: [this.car?.DoorNumber],
-            color: [this.car?.Color],
-            price: [this.car?.PricePerDay],
-            photo: [this.car?.Photo],
-            marque: [this.car?.Marque],
-            description: [this.car?.Description],
-            category: [this.car?.Category]
+            placeNum: [this.car?.PlaceNumber, [Validators.required, Validators.minLength(2)]],
+            doorNum: [this.car?.NumbreDoors, [Validators.required, Validators.minLength(2)]],
+            color: [this.car?.Color,Validators.required],
+            price: [this.car?.PricePerDay, [Validators.required, Validators.minLength(1)]],
+            photo: [this.car?.Photo,Validators.required],
+            marque: [this.car?.Marque,Validators.required],
+            description: [this.car?.Description,Validators.required],
+            category: [this.car?.Categorie,Validators.required],
+            km: [this.car?.Km,Validators.required],
+            bagsNumber: [this.car?.Bags,Validators.required],
+            fuel: [this.car?.Fuel,Validators.required],
+            options:this.fb.group({
+                blutooth:[this.car?.Blutooth],
+                aircond:[this.car?.Aircond],
+                airbag:[this.car?.Airbag],
+                gps:[this.car?.Gps]
+            })
         })
     }
 
@@ -46,7 +82,26 @@ export class CarAlertComponent implements OnInit {
 
     onValidate(): void {
         if (this.infoForm.valid) {
-            this.modal.close();
+
+            if(this.methodeForm == 'Add'){
+                console.log('Insert');
+            }else if(this.methodeForm == 'Update'){
+                console.log('Update');
+            }
+            // this.modal.close();
         }
+    }
+
+    UploadImg(event: any) {
+        var reader = new FileReader();
+        reader.onload = (e) => {
+            this.imgPath = (e.target as any).result;
+        }
+        // console.log((event.target as any).value);
+        reader.readAsDataURL(event.target.files[0]);
+        this.imgPath = event.target.files[0];
+        console.log(event.target.files)
+        this.infoForm.get('photo')?.setValue(event.target.files);
+        // this.setState({img:this.inputfile.current.currentSrc});
     }
 }

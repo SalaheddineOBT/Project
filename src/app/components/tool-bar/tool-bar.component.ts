@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Car } from 'src/app/utils/models/car.model';
 import { ApiService } from 'src/app/services/api.service';
 import { TestService } from 'src/app/services/test.service';
 import { CarsComponent } from '../cars/cars.component';
+import { TCar } from 'src/app/utils/types/car.type';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CarAlertComponent } from '../car-alert/car-alert.component';
 
 @Component({
     selector: 'app-tool-bar',
@@ -15,7 +17,7 @@ import { CarsComponent } from '../cars/cars.component';
 
 export class ToolBarComponent implements OnInit {
 
-    @Input() car: Car;
+    car !:TCar | null;
 
     constructor(
         private fb: FormBuilder,
@@ -23,60 +25,38 @@ export class ToolBarComponent implements OnInit {
         private carsComp: CarsComponent,
         private router: Router,
         private routerAct: ActivatedRoute,
-        public test: TestService
+        public test: TestService,
+        public model:NgbModal
     ) {
-        this.car = {
-            Name: '',
-            PlaceNumber: 0,
-            DoorNumber: 0,
-            Color: '',
-            PricePerDay: '',
-            Photo: '',
-            Marque: '',
-            Category: '',
-            Description: ''
-        };
+        this.car=null;
     }
 
     searchTerm !: string;
-    marques: any = [];
-    categories: any = [];
 
-    get Name() { return this.infoForm.get('name'); }
-    get PlaceNumber() { return this.infoForm.get('placeNum'); }
-    get DoorNumber() { return this.infoForm.get('doorNum'); }
-    get Color() { return this.infoForm.get('color'); }
-    get Price() { return this.infoForm.get('price'); }
-    get Photo() { return this.infoForm.get('photo'); }
-    get Category() { return this.infoForm.get('category'); }
-    get Marque() { return this.infoForm.get('marque'); }
-    get Description() { return this.infoForm.get('description'); }
-
-    public imgPath = "../../../assets/images/imageImport.jpg";
-
-    infoForm = this.fb.group({
-        name: [''],
-        placeNum: [''],
-        doorNum: [''],
-        color: [''],
-        price: [''],
-        photo: [''],
-        marque: [''],
-        description: [''],
-        category: ['']
-    })
+    infoForm:any
 
     ngOnInit(): void {
-        var i = JSON.stringify({ selectedBy: 'All' });
-        this.apiService.getMarques(i).subscribe((res: any) => {
-            // console.log(res.success);
-            res.success ? this.marques = res.Marques : console.log(res.message);
-        });
-        this.apiService.getCategories(i).subscribe((res: any) => {
-            res.success ? this.categories = res.Categories : console.log(res.message);
-        });
 
-        console.log(this.car);
+        this.infoForm = this.fb.group({
+            name: [this.car?.Name, [Validators.required, Validators.minLength(3)]],
+            placeNum: [this.car?.PlaceNumber, [Validators.required, Validators.minLength(2)]],
+            doorNum: [this.car?.NumbreDoors, [Validators.required, Validators.minLength(2)]],
+            color: [this.car?.Color,Validators.required],
+            price: [this.car?.PricePerDay, [Validators.required, Validators.minLength(1)]],
+            photo: [this.car?.Photo,Validators.required],
+            marque: [this.car?.Marque,Validators.required],
+            description: [this.car?.Description,Validators.required],
+            category: [this.car?.Categorie,Validators.required],
+            km: [this.car?.Km,Validators.required],
+            bagsNumber: [this.car?.Bags,Validators.required],
+            fuel: [this.car?.Fuel,Validators.required],
+            options:this.fb.group({
+                blutooth:[this.car?.Blutooth],
+                aircond:[this.car?.Aircond],
+                airbag:[this.car?.Airbag],
+                gps:[this.car?.Gps]
+            })
+        });
     }
 
     changing(e: any) {
@@ -86,37 +66,12 @@ export class ToolBarComponent implements OnInit {
         this.apiService.search.next(this.searchTerm);
     }
 
-    UploadImg(event: any) {
-        var reader = new FileReader();
-        reader.onload = (e) => {
-            this.imgPath = (e.target as any).result;
-        }
-
-        // console.log((event.target as any).value);
-
-        reader.readAsDataURL(event.target.files[0]);
-
-        this.imgPath = event.target.files[0];
-        // this.setState({img:this.inputfile.current.currentSrc});
-    }
-
-    AddCar() {
-        console.log('clicked');
-        this.clearForm();
-    }
-    navigateToreservations = () => this.router.navigate(['saves'], { relativeTo: this.routerAct });
-
-    clearForm() {
-        this.Name?.setValue('');
-        this.PlaceNumber?.setValue('');
-        this.DoorNumber?.setValue('');
-        this.Color?.setValue('');
-        this.Price?.setValue('');
-        this.Photo?.setValue('');
-        this.Category?.setValue('');
-        this.Marque?.setValue('');
-        this.Description?.setValue('');
-        this.imgPath = "../../../assets/images/imageImport.jpg";
+    public onCarAdd(): void {
+        const modal = this.model.open(CarAlertComponent)
+        this.test.methode="Add";
+        console.log(this.infoForm.value)
+        modal.componentInstance.car = this.infoForm.value;
+        //console.log({ modal })
     }
 
 }

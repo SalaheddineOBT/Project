@@ -25,19 +25,17 @@ const routes: Routes = [
     {
         path : 'home',
         component : HomeComponent,
-        children : [
-            {
-                path : 'cars',
-                component : CarsComponent
-            },
-            {
-                path : 'saves',
-                component : SavesComponent
-            },{
-                path : 'reservations',
-                component : ReservationsComponent
-            },
-        ]
+    },
+    {
+        path : 'cars',
+        component : CarsComponent
+    },
+    {
+        path : 'saves',
+        component : SavesComponent
+    },{
+        path : 'reservations',
+        component : ReservationsComponent
     },
     {
         path : '',

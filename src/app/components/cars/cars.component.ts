@@ -96,8 +96,9 @@ export class CarsComponent implements OnInit {
 
     public onCarUpdate(item: TCar): void {
         const modal = this.modalService.open(CarAlertComponent)
+        this.test.methode="Update";
         modal.componentInstance.car = item;
-        console.log({ modal })
+        //console.log({ modal })
     }
 
 }

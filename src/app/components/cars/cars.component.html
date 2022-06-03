@@ -1,49 +1,55 @@
-<section class="marques">
-    <div class="container">
-        <div class="row">
-            <owl-carousel-o [options]="customOptions">
-                <ng-template carouselSlide><span (click)="filter('')" class="all" >ALL</span></ng-template> 
-                <ng-template class="col-md-4" carouselSlide *ngFor="let item of marques">
-                    <img (click)="filter(item.Libelle)" class="img-thumbnail" src="https://rumbustious-hilltop.000webhostapp.com/API/Photos/Marques/{{item.Photo}}" alt="{{item.Libelle}}">
-                </ng-template> 
-            </owl-carousel-o>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            Are You Sure You Want To Delete This Car ?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger">Yes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >No</button>
+        </div>
         </div>
     </div>
-</section>
+</div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are You Sure You Want To Delete This Car ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Yes</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >No</button>
-            </div>
-            </div>
-        </div>
+<nav class="navbar navbar-dark bg-dark mb-5">
+    <div class="container-fluid">
+        <span class="navbar-brand mx-auto">Cars Management</span>
     </div>
+</nav>
+
+<div class="black-border">
+    <!-- toolBar -->
+<app-tool-bar></app-tool-bar>
 
 <ng-container *ngIf="cars.length == 0">
-    <div class="cars">
-        <div class="row mt-g">
-            <div class="col text-center">
-                <span class="text-secondary fs-2 fw-bold fst-italic">
-                    There Are No Cars Added !
-                </span>
-            </div>
+    <div class="container">
+        <div>
+            <img style="width: 100%;" src="../../../assets/images/Preloader.gif" alt="">
         </div>
     </div>
 </ng-container>
 
 <ng-container *ngIf="cars.length > 0">
+    <section class="marques">
+        <div class="container">
+            <div class="row">
+                <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide><span (click)="filter('')" class="all" >ALL</span></ng-template> 
+                    <ng-template class="col-md-4" carouselSlide *ngFor="let item of marques">
+                        <img (click)="filter(item.Libelle)" class="img-thumbnail" src="https://rumbustious-hilltop.000webhostapp.com/API/Photos/Marques/{{item.Photo}}" alt="{{item.Libelle}}">
+                    </ng-template> 
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -70,6 +76,7 @@
         </div>
     </div>  
 </ng-container>
+</div>
 
 <!-- {{data | json}} -->
 
