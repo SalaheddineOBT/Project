@@ -15,8 +15,9 @@ import { FirstpgComponent } from './components/firstpg/firstpg.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { ApiService } from './services/api.service';
-import { FilterPipe } from './shared/filter.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarsModule } from './components/cars/cars.module';
+import { FilterPipeModule } from './pipes/filter/filter.module';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AccountComponent,
     FirstpgComponent,
     HeaderComponent,
-    ToolBarComponent,
-    FilterPipe
+    ToolBarComponent
   ],
   imports: [
     CarouselModule ,
@@ -34,7 +34,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    FilterPipeModule,
     HttpClientModule,
+    CarsModule,
     BrowserAnimationsModule,
     NgbModule
   ],

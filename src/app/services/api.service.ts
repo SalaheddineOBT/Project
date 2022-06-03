@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Car } from '../classes/car.model';
+import { Car } from '../utils/models/car.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,10 @@ export class ApiService {
 
     getMarques(marque:any){
         return this.httpClient.post(this.uri+"Marques/marques.php",marque);
+    };
+
+    getCategories(marque:any){
+        return this.httpClient.post(this.uri+"Categories/categories.php",marque);
     };
 
     getCar(id:any,selected:any){

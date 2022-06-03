@@ -1,0 +1,23 @@
+<div>
+
+    <form class="p-3" [formGroup]="infoForm">
+        <div class="col input-group">
+            <label class="user-label">Name</label>
+            <input [ngClass]="{'is-invalid': isInvalid('name')}"
+                formControlName="name" type="text" class="form-control input">
+        </div>
+
+        <!-- <input type="text" formControlName="name">
+        <input type="color" formControlName="color">
+        <input type="number" formControlName="price" min="0"> -->
+    </form>
+
+    <!-- {{infoForm.value | json}} -->
+
+    <button type="button" (click)="onValidate()">Validate</button>
+
+</div>
+<div>
+    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+
+</div>

@@ -8,6 +8,8 @@
     </div>
 </div>
 
+<button (click)="navigateToreservations()">hello</button>
+
 <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -16,6 +18,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                CAR: <pre>
+                    {{ test.car | json }}
+                </pre>
                 <form class="p-3" [formGroup]="infoForm">
                     <div class="row mt-3">
                         <div class="col input-group">
@@ -56,16 +61,16 @@
                         <div class="col input-group">
                             <select formControlName="marque" value="{{Marque}}" [class.err]="Marque?.invalid && Marque?.touched" required class="form-select input">
                                 <option></option>
-                                <option>dd</option>
+                                <option *ngFor="let item of marques" value="{{item.ID}}">{{item.Libelle}}</option>
                             </select>
                             <label class="user-label" [class.top]="Marque?.valid">Marque</label>
                         </div>
                         <div class="col input-group">
                             <select formControlName="category" value="{{Category}}" [class.err]="Category?.invalid && Category?.touched" required class="form-select input">
                                 <option></option>
-                                <option>ff</option>
+                                <option *ngFor="let item of categories" value="{{item.ID}}">{{item.Description}}</option>
                             </select>
-                            <label [class.top]="Category?.valid" class="user-label">Category</label>
+                            <label [class.top]="Category?.valid" class="user-label">Categorie</label>
                         </div>
                     </div>
                     <div class="row mt-5">
@@ -75,11 +80,13 @@
                         </div>
                     </div>
                 </form>
+
                 <!-- {{infoForm.value | json}} -->
+
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" routerLink="/home/cars">Insert Car</button>
+                <button type="button" class="btn btn-primary" (click)="AddCar()">Insert Car</button>
             </div>
         </div>
     </div>
