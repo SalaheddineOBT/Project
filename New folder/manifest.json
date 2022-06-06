@@ -1,0 +1,10 @@
+{
+    "name": "My Progressive Web Application",
+    "short_name": "Car Rental",
+    "start_url": "/",
+    "icons": [],
+    "theme_color": "#ff0000",
+    "background_color": "#FFFFFF",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
