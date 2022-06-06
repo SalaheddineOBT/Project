@@ -37,6 +37,8 @@ export class ApiService {
         return this.httpClient.post(this.uri+`Cars/cars.php?id=${id}`,selected);
     };
 
-
+    getReservations(selected:any){
+        return this.httpClient.post(this.uri+"Reservations/reservations.php",selected);
+    }
 
 }
