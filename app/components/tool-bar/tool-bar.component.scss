@@ -1,0 +1,57 @@
+// .toolbar{
+//     height:4rem;
+//     display:flex;
+//     justify-content:space-between;
+//     align-items:center;
+// }
+.add-car{
+   
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+// .search-car{
+//     width:50%;
+//     height:70%;
+//     border-radius:1rem;
+//     box-shadow:0px 0px 10px rgba(34,34,34,0.5);
+// }
+.search-car input{
+    border-radius:1rem;
+    font-size:1.1rem;
+}
+.input-group {
+    position: relative;
+}
+.input {
+    background: none;
+    font-size: 1rem;
+    color: #161414;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+}
+.user-label {
+    position: absolute;
+    left: 1.5rem;
+    color: #2196f3;
+    pointer-events: none;
+    transform: translateY(20%);
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+.input:focus, input:valid {
+    outline: none;
+    border: 1.5px solid #1a73e8;
+}
+.top,
+.input:focus ~ label, input:valid ~ label {
+    transform: translateY(-110%);
+    left: .7rem;
+    padding: 0 .2em;
+    color: #2196f3;
+}
+.user-label1{
+    position: absolute;
+    color: #2196f3;
+    pointer-events: none;
+    transform: translateY(-110%);
+    left: .7rem;
+}

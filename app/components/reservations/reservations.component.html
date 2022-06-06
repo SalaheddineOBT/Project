@@ -1,0 +1,49 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <span class="navbar-brand mx-auto">Reservations Management</span>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ul class="responsive-table">
+        <ng-container *ngIf="reservations.length == 0">
+            <div style="width: 100%;padding-right: 2rem;text-align: center;display: grid;justify-content: center;align-items: center;height: 50vh;">
+                <img src="../../../assets/images/noData.png" alt="" srcset="">
+                <!-- <span>No Data</span>  -->
+            </div>
+        </ng-container>
+        <ng-container *ngIf="reservations.length != 0">
+            <li class="table-header">
+                <div class="col-bold" style="width: 3rem;">ID</div>
+                <div class="col col-1 col-bold">Price Total</div>
+                <div class="col col-1 col-bold">Rent On</div>
+                <div class="col col-1 col-bold">Return On</div>
+                <div class="col col-1 col-bold">Reservation Date</div>
+                <div class="col col-2 col-bold">Client</div>
+                <div class="col col-1 col-bold">Car</div>
+                <div class="col col-1 col-bold d-flex">Actions</div>
+            </li>
+            <li class="table-rows" *ngFor="let item of reservations">
+                <div class="col-item" style="display: flex; text-align: center; justify-content: center; align-items: center;" data-label="ID :">{{item.ID}}</div>
+                <div class="col col-1 col-item" data-label="Price Total :">{{item.PriceTotal}} $</div>
+                <div class="col col-1 col-item" data-label="Rent On :">{{item.RentOn}}</div>
+                <div class="col col-1 col-item" data-label="Return On :">{{item.ReturnOn}}</div>
+                <div class="col col-1 col-item" data-label="Reservation Date :">{{item.ReservationDate}}</div>
+                <div class="col col-2 col-item" data-label="Client :"><!--{{item.Client.Name}} | {{item.Client.NationalID}}<br>{{item.Client.Phone}}--> Amed Halif | K2045552 <br>+2126 0223 0225</div>
+                <div class="col col-1 col-item" data-label="Car :">
+                    <img class="img-thumbnail" src="https://rumbustious-hilltop.000webhostapp.com/API/Photos/cars/{{item.Car[0].Photo}}" alt="">
+                </div>        
+                <div class="col col-1 col-item d-flex" data-label="Actions :">
+                    <!-- <button class="button-75" role="button" type="button">
+                        <span class="text">Details</span>
+                    </button> -->
+                    <i class="img-thumbnail" title="View Record" class="fa fa-eye"></i>
+                    <i class="img-thumbnail" title="Update Record" class="fa fa-pen-square"></i>
+                    <i class="img-thumbnail" title="Delete Record" class="fa fa-trash"></i>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</div>
+
+<!-- {{reservations | json}} -->

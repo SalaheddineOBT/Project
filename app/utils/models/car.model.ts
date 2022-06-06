@@ -1,0 +1,19 @@
+export class Car{
+    ID?:number=0;
+    Name:string='';
+    PlaceNumber:number=0;
+    NumbreDoors:number=0;
+    Color:string='';
+    PricePerDay:string='';
+    Photo:string='';
+    Marque:string='';
+    Categorie:string='';
+    Description:string='';
+    Fuel:string='';
+    Km:string='';
+    Bags:string='';
+    Blutooth:boolean=false;
+    Aircond:boolean=false;
+    Airbag:boolean=false;
+    Gps:boolean=false;
+}
