@@ -69,3 +69,23 @@
     width: 90%;
     padding-bottom: 2rem;
 }
+
+.badg{
+    position: absolute;
+    top: .5rem;left: 1rem;
+    z-index: 100;
+    background-color: #044a79;
+    color: azure;
+    padding: .5rem;
+    font-weight: 500;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 2rem;
+}
+.iss{
+    background: rgb(236, 165, 98);
+    color: azure;
+}
+.cards{
+    position: relative;
+}

@@ -10,10 +10,10 @@ export class Car{
     Categorie:string='';
     Description:string='';
     Fuel:string='';
-    Km:string='';
-    Bags:string='';
-    Blutooth:boolean=false;
-    Aircond:boolean=false;
-    Airbag:boolean=false;
-    Gps:boolean=false;
+    KM:string='';
+    BagsNumber:string='';
+    Bluetooth:boolean=false;
+    AirConditioner:boolean=false;
+    AirBag:boolean=false;
+    GPS:boolean=false;
 }

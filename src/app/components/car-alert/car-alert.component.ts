@@ -64,14 +64,14 @@ export class CarAlertComponent implements OnInit {
             marque: [this.car?.Marque,Validators.required],
             description: [this.car?.Description,Validators.required],
             category: [this.car?.Categorie,Validators.required],
-            km: [this.car?.Km,Validators.required],
-            bagsNumber: [this.car?.Bags,Validators.required],
+            km: [this.car?.KM,Validators.required],
+            bagsNumber: [this.car?.BagsNumber,Validators.required],
             fuel: [this.car?.Fuel,Validators.required],
             options:this.fb.group({
-                blutooth:[this.car?.Blutooth],
-                aircond:[this.car?.Aircond],
-                airbag:[this.car?.Airbag],
-                gps:[this.car?.Gps]
+                blutooth:[this.car?.Bluetooth],
+                aircond:[this.car?.AirConditioner],
+                airbag:[this.car?.AirBag],
+                gps:[this.car?.GPS]
             })
         })
     }
